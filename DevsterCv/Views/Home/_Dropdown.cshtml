@@ -1,0 +1,15 @@
+﻿    @using (Html.BeginForm("Privacy", "Home", FormMethod.Post, new { id = "TheForm" }))
+    {
+
+        @Html.DropDownList("c", (SelectList)ViewBag.c, "--Select One--")
+    }
+
+    <script type="text/javascript">
+        $(function () {
+            $("#c").change(function () {
+                $('#TheForm').submit();
+
+            });
+        });
+    </script>
+
