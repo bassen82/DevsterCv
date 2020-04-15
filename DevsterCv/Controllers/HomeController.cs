@@ -50,6 +50,7 @@ namespace DevsterCv.Controllers
         {
             CvViewModel CompleteCv = new CvViewModel();
             Assigment assigment = new Assigment();
+            FocusAssignment focusassigment = new FocusAssignment();
             Contact contact = new Contact();
             Employee employee = new Employee();
             Spec spec = new Spec();
@@ -57,6 +58,7 @@ namespace DevsterCv.Controllers
             CompleteCv.Assigments = assigment.GetAllAssignments(c);
             CompleteCv.Contact = contact.GetContact(c);
             CompleteCv.Employee = employee.GetEmployee(c);
+            CompleteCv.FocusAssigments = focusassigment.GetAllAssignments(c);
             CompleteCv.Spec = spec.GetSpec(c);
 
             return View(CompleteCv);

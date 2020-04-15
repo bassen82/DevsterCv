@@ -23,10 +23,10 @@ namespace DevsterCv.Models
         public EmployeeViewModel GetEmployee(string employee)
         {
             string path = @"c:\\CvAppen\\Devster\\" + employee + "\\Profile\\data.json";
-       string data = File.ReadAllText(path);
-            string fullImagePath = Path.Combine(@"c:\\CvAppen\\Devster\\", employee, "\\Profile\\profile.jpg");
-            byte[] img = File.ReadAllBytes(fullImagePath);
+            string data = File.ReadAllText(path);
 
+            string photopath = @"~/images/" + employee + "/profile.webp";
+            
             // Deserialize Data.  
             Employee target = JsonConvert.DeserializeObject<Employee>(data);
 
@@ -39,7 +39,7 @@ namespace DevsterCv.Models
             EVM.EmployeeName = target.EmployeeName;
             EVM.EmployeeInfo = target.EmployeeInfo;
             EVM.EmployeRole = target.EmployeRole;
-            EVM.Photo = img;
+            EVM.Photopath = photopath;
           
 
             return EVM;

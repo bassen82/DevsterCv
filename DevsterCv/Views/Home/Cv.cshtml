@@ -1,52 +1,130 @@
-﻿@using MVCSharpArch.Domain
-@model DevsterCv.Models.CvViewModel
+﻿@model DevsterCv.Models.CvViewModel
+<div class="header">
+    <div class="headerleft"><img src="@Url.Content(Model.Employee.Photopath)" title="profilepic" alt="profile" height="120" weight="120"> </div>
+    <div class="headerright"> <h1>@Html.ViewData.Model.Employee.EmployeeName</h1></div>
 
+</div>
+<div class="content">
+    <div class="leftinfo">
+        <div class="infopanel infopanel--center">
+            <h6>KONTAKT</h6>
+            <p><img src="~/images/tele.png" title="telephone" alt="telephone"></p>
+            <p>@Html.ViewData.Model.Contact.Tele</p>
+            <p><img src="~/images/home.png" title="home" alt="home"></p>
+            <p>@Html.ViewData.Model.Contact.City</p>
+            <p><img src="~/images/mail.png" title="mail" alt="mail"></p>
+            <p>@Html.ViewData.Model.Contact.Mail</p>
+            <p><img src="~/images/linkedin.png" title="linkedin" alt="linkedin"></p>
+            <p>@Html.ViewData.Model.Contact.Linkedin</p>
 
-@{ byte[] photo = Model.Employee.Photo;
-    string imageSrc = null;
-    if (photo != null)
-    {
-        MemoryStream ms = new MemoryStream();
-        ms.Write(photo, 78, photo.Length - 78); // strip out 78 byte OLE header (don't need to do this for normal images)
-        string imageBase64 = Convert.ToBase64String(ms.ToArray());
-        imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
-    }
-    <img src="@imageSrc" alt="Employee Photo" border="0" />
-}
+        </div>
+        <div class="infopanel">
+            <h6>EXPERTIS</h6>
+            <ul style="list-style-type:none;">
+                @foreach (var expertis in Model.Spec.Expertis)
+                {
+                    <li>@expertis</li>
+                }
+            </ul>
+        </div>
+        <div class="infopanel">
+            <h6>UTBILDNING</h6>
+            @foreach (var utbildning in Model.Spec.Utbildning)
+            {
+                <ul>
+                    <li>@utbildning</li>
+                </ul>
 
-<h2>Profile</h2>
-<p>@Html.ViewData.Model.Employee.EmployeeName</p>
-<p>@Html.ViewData.Model.Employee.ProfileCompany</p>
-<p>@Html.ViewData.Model.Employee.ProfileCompanyAdress</p>
-<p>@Html.ViewData.Model.Employee.ProfileCompanyPostalAdress</p>
-<p>@Html.ViewData.Model.Employee.ProfilRole</p>
-<p>@Html.ViewData.Model.Employee.EmployeeInfo</p>
-<p>@Html.ViewData.Model.Employee.EmployeRole</p>
+            }
 
+        </div>
+        <div class="infopanel">
+            <h6>TEKNIKER & VERKTYG</h6>
+            <ul style="list-style-type:none;">
+                @foreach (var teknik in Model.Spec.teknik)
+                {
+                    <li>@teknik</li>
+                }
+            </ul>
+        </div>
+        <div class="infopanel">
+            <h6>MIDDLEWARE/DATABASER</h6>
+            <ul style="list-style-type:none;">
+                @foreach (var middleware in Model.Spec.Middleware)
+                {
+                    <li>@middleware</li>
+                }
+            </ul>
+        </div>
+        <div class="infopanel">
+            <h6>BRANSCHER</h6>
+            <ul style="list-style-type:none;">
+                @foreach (var bransch in Model.Spec.Branscher)
+                {
+                    <li>@bransch</li>
+                }
+            </ul>
 
-<h2>Kontact</h2>
-<p>@Html.ViewData.Model.Contact.Tele</p>
-<p>@Html.ViewData.Model.Contact.City</p>
-<p>@Html.ViewData.Model.Contact.Mail</p>
-<p>@Html.ViewData.Model.Contact.Linkedin</p>
+        </div>
+        <div class="infopanel">
+            <h6>INTRESSEN</h6>
+            <ul style="list-style-type:none;">
+                <li>@Html.ViewData.Model.Spec.Intressen</li>
+            </ul>
+        </div>
+    </div>
+    <div class="rightinfo">
+        <div class="cvinfo">
+            <h2>PROFIL</h2>
+            <ul style="list-style-type:none;">
+                <li>@Html.ViewData.Model.Employee.ProfilRole</li>
+                <li>@Html.ViewData.Model.Employee.ProfileCompany</li>
+                <li>@Html.ViewData.Model.Employee.ProfileCompanyAdress</li>
+                <li>@Html.ViewData.Model.Employee.ProfileCompanyPostalAdress</li>
+            </ul>
+        </div>
+        <div class="cvinfo">
+            <h2>@Html.ViewData.Model.Employee.EmployeeName</h2>
+            <p>@Html.ViewData.Model.Employee.EmployeeInfo</p>
+            <h2>Roller</h2>
+            <p>@Html.ViewData.Model.Employee.EmployeRole</p>
+        </div>
 
-<h2>Spec</h2>
-<p>@Html.ViewData.Model.Spec.Expertis</p>
-<p>@Html.ViewData.Model.Spec.Utbildning</p>
-<p>@Html.ViewData.Model.Spec.Middleware</p>
-<p>@Html.ViewData.Model.Spec.Tekniker</p>
-<p>@Html.ViewData.Model.Spec.Branscher</p>
-<p>@Html.ViewData.Model.Spec.Intressen</p>
+        <div class="cvinfo">
+            <h2>UPPDRAG I FOKUS</h2>
+            @foreach (var focusassignment in Model.FocusAssigments)
+            {
+                <div class="assignment">
+                    <h6>@focusassignment.Uppdrag</h6>
+                    <div class="bananer">
+                        <div class="role">@focusassignment.Roll</div>
+                        <div class="timeslot">@focusassignment.Tid</div>
+                    </div>
 
-<h2>Erfarenheter</h2>
-@foreach (var assignment in Model.Assigments)
-{
-    <p>@assignment.Uppdrag</p>
-    <p>@assignment.Roll</p>
-    <p>@assignment.Tid</p>
-    <p>@assignment.Beskrivning</p>
-    <p>@assignment.Teknik</p>
-}
+                    <p>@focusassignment.Beskrivning</p>
+                    <p class="font-italic">@focusassignment.Teknik</p>
+                </div>
+            }
+        </div>
+        <div class="cvinfo">
+            <h2>ERFARENHETER</h2>
+            @foreach (var assignment in Model.Assigments)
+            {
+                <div class="assignment">
+                    <h6>@assignment.Uppdrag</h6>
+                    <div class="bananer">
+                        <div class="role">@assignment.Roll</div>
+                        <div class="timeslot">@assignment.Tid</div>
+                    </div>
+
+                    <p>@assignment.Beskrivning</p>
+                    <p class="font-italic">@assignment.Teknik</p>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
 
 
 

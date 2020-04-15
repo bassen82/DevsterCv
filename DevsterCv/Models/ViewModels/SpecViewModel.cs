@@ -7,11 +7,11 @@ namespace DevsterCv.Models.ViewModels
 {
     public class SpecViewModel
     {
-        public string Expertis { get; set; }
-        public string Utbildning { get; set; }
-        public string Tekniker { get; set; }
-        public string Middleware { get; set; }
-        public string Branscher { get; set; }
+        public string[] Expertis { get; set; }
+        public string[] Utbildning { get; set; }
+        public string[] teknik { get; set; }
+        public string[] Middleware { get; set; }
+        public string[] Branscher { get; set; }
         public string Intressen { get; set; }
     }
 }

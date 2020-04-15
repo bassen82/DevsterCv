@@ -27,11 +27,13 @@ namespace DevsterCv.Models
 
             SpecViewModel SVM = new SpecViewModel();
 
-            SVM.Expertis = target.Expertis;
-            SVM.Utbildning = target.Utbildning;
-            SVM.Tekniker = target.Tekniker;
-            SVM.Middleware = target.Middleware;
-            SVM.Branscher = target.Branscher;
+            
+
+            SVM.Expertis = target.Expertis.Split(',');
+            SVM.Utbildning = target.Utbildning.Split(',');
+            SVM.teknik = target.Tekniker.Split(',');
+            SVM.Middleware = target.Middleware.Split(',');
+            SVM.Branscher = target.Branscher.Split(',');
             SVM.Intressen = target.Intressen;
 
             return SVM;

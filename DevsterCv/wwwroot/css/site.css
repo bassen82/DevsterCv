@@ -69,3 +69,94 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.container{
+    display: flex;
+}
+
+.wrapper {
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+}
+
+.leftinfo {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.rightinfo {
+    display: flex;
+    flex-direction:column;
+    padding:10px;
+}
+
+.infopanel {
+    background-color: bisque;
+    width: 250px;
+
+}
+
+    .infopanel p {
+        display: flex;
+        justify-content: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .infopanel h6 {
+        background-color: black;
+        color: white;
+        display: flex;
+        display: flex;
+        justify-content: center;
+    }
+
+.header {
+    display: flex;
+    flex-direction: row;
+    background-color:lightgrey;
+    height:200px;
+}
+
+    .header img {
+    border-radius: 50%;
+}
+
+
+.headerleft {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding:50px;
+}
+
+.headerright {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    width:100%;
+}
+
+    .headerright h1 {
+        font-style: italic;
+    }
+
+.bananer {
+    display: flex;
+    flex-direction: row;
+}
+
+.role {
+    width: 50%;
+    font-weight:bold;
+}
+
+.timeslot {
+    width: 50%;
+    font-weight: bold;
+    text-align:right;
+}
