@@ -1,0 +1,7 @@
+﻿@using (Html.BeginForm("Cv", "Home", FormMethod.Post, new { id = "TheForm" }))
+{
+    @Html.DropDownList("c", (SelectList)ViewBag.c, "---VÄLJ ANSTÄLLD---")
+}
+
+
+

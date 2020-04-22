@@ -16,15 +16,14 @@ namespace DevsterCv.Models
         public string Linkedin { get; set; } = string.Empty;
   
 
-    public ContactViewModel GetContact(string employee)
+    public async Task<ContactViewModel> GetContactAsync(string employee, string part)
     {
-        string path = @"c:\\CvAppen\\Devster\\" + employee + "\\Kontakt\\data.json";
-        string data = File.ReadAllText(path);
+            DropBoxRepository d = new DropBoxRepository();
+            string data = await d.GetFile(employee, part);
 
-        // Deserialize Data.  
-       Contact target = JsonConvert.DeserializeObject<Contact>(data);
+            // Deserialize Data.  
+            Contact target = JsonConvert.DeserializeObject<Contact>(data);
 
-     
             ContactViewModel CVM = new ContactViewModel();
             CVM.Tele = target.Tele;
             CVM.City = target.City;

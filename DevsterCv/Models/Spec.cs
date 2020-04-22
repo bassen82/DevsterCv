@@ -17,17 +17,15 @@ namespace DevsterCv.Models
         public string Branscher { get; set; }
         public string Intressen { get; set; }
 
-        public SpecViewModel GetSpec(string employee)
+        public async Task<SpecViewModel> GetSpecAsync(string employee, string part)
         {
-            string path = @"c:\\CvAppen\\Devster\\" + employee + "\\Spec\\data.json";
-            string data = File.ReadAllText(path);
+            DropBoxRepository d = new DropBoxRepository();
+            string data = await d.GetFile(employee, part);
 
             // Deserialize Data.  
             Spec target = JsonConvert.DeserializeObject<Spec>(data);
 
             SpecViewModel SVM = new SpecViewModel();
-
-            
 
             SVM.Expertis = target.Expertis.Split(',');
             SVM.Utbildning = target.Utbildning.Split(',');

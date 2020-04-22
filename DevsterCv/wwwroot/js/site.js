@@ -1,4 +1,30 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(document).ready(function () {
+    $('.checkbox').change(function () {     
+        if (this.checked) {
+            $(this).closest(".assignmentin").removeClass("filter");
 
-// Write your JavaScript code.
+        }
+        else {
+            $(this).closest(".assignmentin").addClass("filter");
+        }
+    });
+
+    $('.checkboxteknik').change(function () {
+        if (this.checked) {
+            $(this).closest(".filtercheckteknik").removeClass("filter");
+
+        }
+        else {
+            $(this).closest(".filtercheckteknik").addClass("filter");
+        }
+    });
+
+    $("#c").change(function () {
+        if ($(this).val() !== '') {
+            $('#TheForm').submit();
+        }
+    });
+});
+
+
+

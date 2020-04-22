@@ -8,11 +8,11 @@ namespace DevsterCv.Models
 {
     public class CvViewModel
     {
-        public EmployeeViewModel Employee { get; set; }
-        public ContactViewModel Contact { get; set; }
-        public SpecViewModel Spec { get; set; }
-        public List<AssignmentViewModel> Assigments { get; set; }
-        public List<FocusAssignmentViewModel> FocusAssigments { get; set; }
+        public Task<EmployeeViewModel> Employee { get; set; }
+        public Task<ContactViewModel> Contact { get; set; }
+        public Task<SpecViewModel> Spec { get; set; }
+        public Task<List<AssignmentViewModel>> Assigments { get; set; }
+        public Task<List<FocusAssignmentViewModel>> FocusAssigments { get; set; }
         public string Photopath { get; set; }
 
 

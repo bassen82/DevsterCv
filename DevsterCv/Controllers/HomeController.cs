@@ -24,30 +24,13 @@ namespace DevsterCv.Controllers
 
         public IActionResult Index()
         {
-            string[] dirs = Directory.GetDirectories(@"C:\CvAppen\Devster");
-            List<string> employees = new List<string>();
-
-            foreach (string dir in dirs)
-            {
-                String name = dir.Substring(19);
-                employees.Add(name);
-            }
-
-            var query = employees.Select(c => new { c });
-            ViewBag.c = new SelectList(query.AsEnumerable(), "c", "c", 3);
-
-            return View();
-        }
-
-        public IActionResult Privacy(string name)
-        {
-
             return View();
         }
 
         [HttpPost]
         public IActionResult Cv(String c)
         {
+
             CvViewModel CompleteCv = new CvViewModel();
             Assigment assigment = new Assigment();
             FocusAssignment focusassigment = new FocusAssignment();
@@ -55,11 +38,12 @@ namespace DevsterCv.Controllers
             Employee employee = new Employee();
             Spec spec = new Spec();
 
-            CompleteCv.Assigments = assigment.GetAllAssignments(c);
-            CompleteCv.Contact = contact.GetContact(c);
-            CompleteCv.Employee = employee.GetEmployee(c);
-            CompleteCv.FocusAssigments = focusassigment.GetAllAssignments(c);
-            CompleteCv.Spec = spec.GetSpec(c);
+            CompleteCv.Assigments = assigment.GetAllAssignmentsAsync(c, "Uppdrag");
+            CompleteCv.Contact = contact.GetContactAsync(c, "Kontakt");
+            CompleteCv.Employee = employee.GetEmployeeAsync(c, "Profile");
+            CompleteCv.FocusAssigments = focusassigment.GetAllAssignmentsAsync(c, "Uppdragifokus");
+            CompleteCv.Spec = spec.GetSpecAsync(c, "Spec");
+           
 
             return View(CompleteCv);
         }

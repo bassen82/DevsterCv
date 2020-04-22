@@ -1,101 +1,115 @@
 ﻿@model DevsterCv.Models.CvViewModel
 <div class="header">
-    <div class="headerleft"><img src="@Url.Content(Model.Employee.Photopath)" title="profilepic" alt="profile" height="120" weight="120"> </div>
-    <div class="headerright"> <h1>@Html.ViewData.Model.Employee.EmployeeName</h1></div>
+    <div class="headerleft"><img src="data:image;base64,@System.Convert.ToBase64String(Model.Employee.Result.Photo)" title="profilepic" alt="profile" height="120" weight="120" /> </div>
+    <div class="headerright"> <h1>@Html.ViewData.Model.Employee.Result.EmployeeName</h1></div>
 
 </div>
 <div class="content">
     <div class="leftinfo">
-        <div class="infopanel infopanel--center">
+        <div class="infopanel">
             <h6>KONTAKT</h6>
             <p><img src="~/images/tele.png" title="telephone" alt="telephone"></p>
-            <p>@Html.ViewData.Model.Contact.Tele</p>
+            <p>@Html.ViewData.Model.Contact.Result.Tele</p>
             <p><img src="~/images/home.png" title="home" alt="home"></p>
-            <p>@Html.ViewData.Model.Contact.City</p>
+            <p>@Html.ViewData.Model.Contact.Result.City</p>
             <p><img src="~/images/mail.png" title="mail" alt="mail"></p>
-            <p>@Html.ViewData.Model.Contact.Mail</p>
+            <p>@Html.ViewData.Model.Contact.Result.Mail</p>
             <p><img src="~/images/linkedin.png" title="linkedin" alt="linkedin"></p>
-            <p>@Html.ViewData.Model.Contact.Linkedin</p>
+            <p>@Html.ViewData.Model.Contact.Result.Linkedin</p>
 
         </div>
         <div class="infopanel">
             <h6>EXPERTIS</h6>
             <ul style="list-style-type:none;">
-                @foreach (var expertis in Model.Spec.Expertis)
+                @foreach (var expertis in Model.Spec.Result.Expertis)
                 {
-                    <li>@expertis</li>
+                    <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @expertis</span></li>
                 }
             </ul>
         </div>
-        <div class="infopanel">
-            <h6>UTBILDNING</h6>
-            @foreach (var utbildning in Model.Spec.Utbildning)
-            {
-                <ul>
-                    <li>@utbildning</li>
-                </ul>
 
-            }
-
-        </div>
         <div class="infopanel">
             <h6>TEKNIKER & VERKTYG</h6>
             <ul style="list-style-type:none;">
-                @foreach (var teknik in Model.Spec.teknik)
+                @foreach (var teknik in Model.Spec.Result.teknik)
                 {
-                    <li>@teknik</li>
+                <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @teknik</span></li>
                 }
             </ul>
         </div>
         <div class="infopanel">
             <h6>MIDDLEWARE/DATABASER</h6>
             <ul style="list-style-type:none;">
-                @foreach (var middleware in Model.Spec.Middleware)
+                @foreach (var middleware in Model.Spec.Result.Middleware)
                 {
-                    <li>@middleware</li>
+                    <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @middleware</span></li>
                 }
             </ul>
         </div>
         <div class="infopanel">
             <h6>BRANSCHER</h6>
             <ul style="list-style-type:none;">
-                @foreach (var bransch in Model.Spec.Branscher)
+                @foreach (var bransch in Model.Spec.Result.Branscher)
                 {
-                    <li>@bransch</li>
+                    <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @bransch</span></li>
                 }
             </ul>
 
-        </div>
+        </div>        <div class="infopanel">
+    <h6>UTBILDNING</h6>
+    <ul>
+        @foreach (var utbildning in Model.Spec.Result.Utbildning)
+        {
+            <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @utbildning</span></li>
+        }
+
+    </ul>
+    </div>
         <div class="infopanel">
             <h6>INTRESSEN</h6>
             <ul style="list-style-type:none;">
-                <li>@Html.ViewData.Model.Spec.Intressen</li>
+                <li>@Html.ViewData.Model.Spec.Result.Intressen</li>
             </ul>
         </div>
+
     </div>
     <div class="rightinfo">
+
         <div class="cvinfo">
-            <h2>PROFIL</h2>
-            <ul style="list-style-type:none;">
-                <li>@Html.ViewData.Model.Employee.ProfilRole</li>
-                <li>@Html.ViewData.Model.Employee.ProfileCompany</li>
-                <li>@Html.ViewData.Model.Employee.ProfileCompanyAdress</li>
-                <li>@Html.ViewData.Model.Employee.ProfileCompanyPostalAdress</li>
-            </ul>
+            <div class="bananer">
+                <div class="profileleftside"><h2>PROFIL</h2></div>
+                <div class="profilerightside"><hr></div>
+            </div>
+            <div class="bananer">
+                <div class="profileupperleftside"><hr></div>
+            </div>
+            <div class="bananer">
+                <div class="vline"></div>
+                <div class="info"><ul style="list-style-type:none;"><li>@Html.ViewData.Model.Employee.Result.EmployeeInfo</li></ul></div>
+            </div>
+        </div>
+        <div class="bananer">
+            <div class="profiledownleftside"><hr></div>
+        </div>
+        <div class="bananer">
+            <div class="profiledownleftside"></div>
+            <div class="profiledownrightside"><hr></div>
         </div>
         <div class="cvinfo">
-            <h2>@Html.ViewData.Model.Employee.EmployeeName</h2>
-            <p>@Html.ViewData.Model.Employee.EmployeeInfo</p>
-            <h2>Roller</h2>
-            <p>@Html.ViewData.Model.Employee.EmployeRole</p>
+            <h2>ROLLER</h2>
+            <p>@Html.ViewData.Model.Employee.Result.EmployeRole</p>
         </div>
 
         <div class="cvinfo">
             <h2>UPPDRAG I FOKUS</h2>
-            @foreach (var focusassignment in Model.FocusAssigments)
+            @foreach (var focusassignment in Model.FocusAssigments.Result)
             {
-                <div class="assignment">
-                    <h6>@focusassignment.Uppdrag</h6>
+                <div class="assignmentin">
+                    <div class="bananer">
+                        <div class="role"><h6>@focusassignment.Uppdrag</h6></div>
+                        <div class="filterout d-print-none"><input class="checkbox" checked type="checkbox"></div>
+                    </div>
+                    
                     <div class="bananer">
                         <div class="role">@focusassignment.Roll</div>
                         <div class="timeslot">@focusassignment.Tid</div>
@@ -106,25 +120,39 @@
                 </div>
             }
         </div>
-        <div class="cvinfo">
-            <h2>ERFARENHETER</h2>
-            @foreach (var assignment in Model.Assigments)
-            {
-                <div class="assignment">
-                    <h6>@assignment.Uppdrag</h6>
-                    <div class="bananer">
-                        <div class="role">@assignment.Roll</div>
-                        <div class="timeslot">@assignment.Tid</div>
+
+            <div class="cvinfo">
+                <div>
+                    <div class="assignment">
+
+                        <div class="bananer">
+                            <div class="leftside"><h2>ERFARENHETER</h2></div>
+                            <div class="rightside"><hr></div>
+                        </div>
+                        <div class="leftside"><img src="~/images/portfolio.svg" height="50" width="50" /></div>
+
+                        @foreach (var assignment in Model.Assigments.Result)
+                        {
+                    <div class="assignmentin">
+                        <div class="bananer">
+                            <div class="role"><h6>@assignment.Uppdrag</h6></div>
+                            <div class="filterout d-print-none"><input class="checkbox" checked type="checkbox" id="vehicle3" name="vehicle3" value="Boat"></div>
+                        </div>
+                        <div class="bananer">
+                            <div class="role">@assignment.Roll</div>
+                            <div class="timeslot">@assignment.Tid</div>
+                        </div>
+
+                        <p>@assignment.Beskrivning</p>
+                        <p class="font-italic">@assignment.Teknik</p>
                     </div>
+                        }
 
-                    <p>@assignment.Beskrivning</p>
-                    <p class="font-italic">@assignment.Teknik</p>
+                    </div>
                 </div>
-            }
-
+            </div>
         </div>
     </div>
-</div>
 
 
 

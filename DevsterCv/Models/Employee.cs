@@ -20,18 +20,16 @@ namespace DevsterCv.Models
         public string EmployeRole { get; set; }
     
 
-        public EmployeeViewModel GetEmployee(string employee)
+        public async Task<EmployeeViewModel> GetEmployeeAsync(string employee, string part)
         {
-            string path = @"c:\\CvAppen\\Devster\\" + employee + "\\Profile\\data.json";
-            string data = File.ReadAllText(path);
-
-            string photopath = @"~/images/" + employee + "/profile.webp";
-            
+            DropBoxRepository dr = new DropBoxRepository();
+            string data = await dr.GetFile(employee, part);
+                             
             // Deserialize Data.  
             Employee target = JsonConvert.DeserializeObject<Employee>(data);
 
             EmployeeViewModel EVM = new EmployeeViewModel();
-        
+
             EVM.ProfilRole = target.ProfilRole;
             EVM.ProfileCompany = target.ProfileCompany;
             EVM.ProfileCompanyAdress = target.ProfileCompanyAdress;
@@ -39,10 +37,11 @@ namespace DevsterCv.Models
             EVM.EmployeeName = target.EmployeeName;
             EVM.EmployeeInfo = target.EmployeeInfo;
             EVM.EmployeRole = target.EmployeRole;
-            EVM.Photopath = photopath;
-          
+            EVM.Photo = await dr.GetProfilePic(employee, part);
 
             return EVM;
         }
+
+
     }
 }

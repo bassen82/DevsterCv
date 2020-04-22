@@ -16,6 +16,6 @@ namespace DevsterCv.Models.ViewModels
         public string ProfileCompanyPostalAdress { get; set; }
         public string EmployeeInfo { get; set; }
         public string EmployeRole { get; set; }
-        public string Photopath { get; set; }
+        public byte[] Photo { get; set; }
     }
 }

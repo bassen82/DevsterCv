@@ -85,19 +85,19 @@ body {
 .leftinfo {
     display: flex;
     flex-direction: column;
+    background-color: bisque;
 }
 
 
 .rightinfo {
     display: flex;
     flex-direction:column;
-    padding:10px;
+    padding:10px 10px 10px 30px;
+
 }
 
 .infopanel {
-    background-color: bisque;
     width: 250px;
-
 }
 
     .infopanel p {
@@ -113,12 +113,16 @@ body {
         display: flex;
         display: flex;
         justify-content: center;
+        margin-top: 15px;
+        color: bisque;
+        font-family:Arial;
+        font-weight: normal;
     }
 
 .header {
     display: flex;
     flex-direction: row;
-    background-color:lightgrey;
+    background-color:gray;
     height:200px;
 }
 
@@ -150,9 +154,15 @@ body {
     flex-direction: row;
 }
 
+.bananer p {
+    margin-left:0px;
+}
+
 .role {
     width: 50%;
     font-weight:bold;
+    font-family: 'Palatino Linotype';
+    font-size:larger;
 }
 
 .timeslot {
@@ -160,3 +170,190 @@ body {
     font-weight: bold;
     text-align:right;
 }
+
+.leftside {
+    width: 37%;
+    font-weight: bold;
+}
+
+    .leftside img {
+        margin-left: -20px;
+        justify-content: left;
+    }
+
+.rightside {
+    width: 63%;
+}
+
+    .rightside hr {
+        border-top: 1px solid black;
+    }
+
+.profileleftside {
+    width: 20%;
+}
+
+.profilerightside {
+    width: 80%;
+}
+
+    .profilerightside hr {
+        border-top: 1px solid black;
+    }
+
+.profileupperleftside {
+    width: 30%;
+}
+
+    .profileupperleftside hr {
+        border-top: 1px solid black;
+        width: 20%;
+        float: left;
+        margin-bottom: 0;
+    }
+
+.profiledownleftside {
+    width: 30%;
+}
+
+    .profiledownleftside hr {
+        border-top: 1px solid black;
+        width: 20%;
+        float: left;
+        margin-top: 0;
+    }
+
+.profiledownrightside {
+    width: 70%;
+}
+
+    .profiledownrightside hr {
+        border-top: 1px solid black;
+        float: right;
+        width: 90%;
+      
+    }
+
+.vline {
+    border-left: 1px solid black;
+
+    position: relative;
+}
+
+.cvinfo{
+    margin-top:20px;
+}
+    .cvinfo p {
+        margin-left: 20px;
+        margin-left: 20px;
+    }
+
+.info li{
+    padding:13px;
+}
+
+h6 {
+    font-family: 'Palatino Linotype';
+    font-size:larger;
+    font-weight: bold;
+    color: rgb(128, 100, 49);
+}
+
+h2 {
+    font-family: Arial;
+}
+
+h1{
+    font-family: 'Times New Roman';
+    font-style: italic;
+    font-weight:bold;
+    font-size: 72px;
+    color:bisque;
+}
+
+.assignmentin {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.assignmentin p {
+    margin-left:0px;
+}
+
+
+.vline:before {
+    width: 50px;
+    content: url("../images/user.svg");
+    background: #fff;
+    /*background-image: url("../images/profile2.jpg");*/
+    position: absolute;
+    left: -20px;
+    top: 35px;
+    height: 50px;
+}
+
+.indexheader {
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+}
+
+.indexrightside h6{
+    margin-left:30px;
+}
+
+.cvinfofocus {
+    margin-top: 20px;
+}
+
+.cvinfofocus p {
+    margin-left: 20px;
+    margin-left: 20px;
+}
+
+.filterout {
+    width: 50%;
+    font-weight: bold;
+    text-align: right;
+}
+
+.assignmentin.filter {
+    margin-bottom: 10px;
+}
+
+.assignmentin.filter p {
+    display: none;
+    margin-bottom: 10px;
+}
+
+.assignmentin.filter .role {
+    background: linear-gradient();
+    opacity: 0.3;
+}
+
+.assignmentin.filter .timeslot {
+    background: linear-gradient();
+    opacity: 0.3;
+}
+
+.filtercheckteknik.filter span {
+    background: linear-gradient();
+    opacity: 0.3;
+}
+
+
+
+@media print {
+    header, footer {
+        display: none;
+    }
+    .filter{
+        display:none;
+    }
+
+    .checkboxteknik {
+        display: none;
+    }
+
+}
+

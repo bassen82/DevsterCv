@@ -1,15 +1,37 @@
-﻿@using (Html.BeginForm("Cv", "Home", FormMethod.Post, new { id = "TheForm" }))
-{
+﻿<div class="indexheader">
 
-    @Html.DropDownList("c", (SelectList)ViewBag.c, "--Select Employee--")
-}
+</div>
+<div class="content">
+    <div class="rightinfo">
+        <div class="cvinfo">
+            <div class="bananer">
+                <div class="indexleftside">
+                    <img src="~/images/ladda ned.jpg" />
 
-<script type="text/javascript">
-    $(function () {
-        $("#c").change(function () {
-            $('#TheForm').submit();
+                </div>
+                <div class="indexrightside">
+                    <h6>DesvterCv visualiserar anställdas cv:n</h6>
+                    <ul>
+                        <li>För att se en anställds cv välj personen i rullistan i headern</li>
+                        <li>För att skriva ut ett cv. Högerklicka och välj skriv ut eller ctrl + p</li>
+                    </ul>
+                    <h6>Hur det funkar</h6>
+                    <ul>
+                        <li> DevsterCV appen listar all cv data som finns i filstrukturen för varje anställd. Filstrukturen är C:\CvAppen\Devster\{Anställd}. Rulllistan populeras utifrån sökvägen C:\CvAppen\Devster\{Anställd}. Det betyder att om någon ny börjar eller slutar så behöver den personen läggas till alternativt tas bort från filstrukturen, detta reflekteras då också i DevsterCv. </li>
+                        <li>Under varje anställds mapp finns sen hela cv:et uppdelat i olika mappar som var och en innehåller en json fil (data.json) för varje del av cv:et. Det är viktigt att alla filer heter data.json.</li>
+                        <li>Dom undermappar som finns för varje anställd är Bild, Kontakt, Profile, Spec, Uppdrag samt Uppdrag i fokus.</li>
+                        <li>Uppdrag i fokus lägger man de uppdrag som är av störst vikt för det kundcase som man ska skicka cv:et till. Det går att lägga en eller flera uppdrag som fokus uppdrag.</li>
+                        <li>För att ändra en anställds cv så måste man editera json filerna. Antingen lägga till eller ta bort delar ur berörd data.json fil </li>
+                        <li>DevsterCv app visar endast upp innehållet som finns i json filerna som heter data.json i filstrukturen.</li>
+                        <li>data.json filern måste bestå av endast valid json data. Online finns en flera olika json validatorer som kan användas för att validera. Den här kan t ex användas <a href="https://jsonformatter.curiousconcept.com/">jsonformatter.curiousconcept.com</a></li>
+                    </ul>
+                </div>
+            </div>
 
-        });
-    });
-</script>
+        </div>
+
+    </div>
+</div>
+
+
 

@@ -13,10 +13,11 @@ namespace DevsterCv.Models
         public string Beskrivning { get; set; } = string.Empty;
         public string Teknik { get; set; } = string.Empty;
 
-        public List<FocusAssignmentViewModel> GetAllAssignments(string employee)
+        public async System.Threading.Tasks.Task<List<FocusAssignmentViewModel>> GetAllAssignmentsAsync(string employee, string part)
         {
-            string path = @"c:\\CvAppen\\Devster\\" + employee + "\\Uppdragifokus\\data.json";
-            string data = File.ReadAllText(path);
+            DropBoxRepository d = new DropBoxRepository();
+            string data = await d.GetFile(employee, part);
+
 
             // Deserialize Data.  
             List<FocusAssignment> targetData = JsonConvert.DeserializeObject<List<FocusAssignment>>(data);
