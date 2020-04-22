@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,12 +22,11 @@ namespace DevsterCv.Models
         {
             DropBoxRepository d = new DropBoxRepository();
             string data = await d.GetFile(employee, part);
-
             // Deserialize Data.  
             Spec target = JsonConvert.DeserializeObject<Spec>(data);
 
             SpecViewModel SVM = new SpecViewModel();
-
+            
             SVM.Expertis = target.Expertis.Split(',');
             SVM.Utbildning = target.Utbildning.Split(',');
             SVM.teknik = target.Tekniker.Split(',');
