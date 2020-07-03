@@ -5,15 +5,79 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200527072856_InitialModel.cs" />
+    <Compile Remove="Migrations\20200527072856_InitialModel.Designer.cs" />
+    <Compile Remove="Migrations\20200527073318_InitialModel2.cs" />
+    <Compile Remove="Migrations\20200527073318_InitialModel2.Designer.cs" />
+    <Compile Remove="Migrations\20200527073414_InitialModel2.cs" />
+    <Compile Remove="Migrations\20200527073414_InitialModel2.Designer.cs" />
+    <Compile Remove="Migrations\20200527092141_AddCity.cs" />
+    <Compile Remove="Migrations\20200527092141_AddCity.Designer.cs" />
+    <Compile Remove="Migrations\20200602222940_companies.cs" />
+    <Compile Remove="Migrations\20200602222940_companies.Designer.cs" />
+    <Compile Remove="Migrations\20200602223024_companies.cs" />
+    <Compile Remove="Migrations\20200602223024_companies.Designer.cs" />
+    <Compile Remove="Migrations\20200603071702_assi.cs" />
+    <Compile Remove="Migrations\20200603071702_assi.Designer.cs" />
+    <Compile Remove="Migrations\20200603071915_assi.cs" />
+    <Compile Remove="Migrations\20200603071915_assi.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Devstercv.sqlite" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dropbox.Api" Version="4.9.4" />
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.45.0.1922" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.0.7" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\images\images.png" />
     <None Include="wwwroot\images\profile.jpg" />
+    <None Include="wwwroot\js\extention\choices.js" />
+    <None Include="wwwroot\js\extention\custom-materialize.js" />
+    <None Include="wwwroot\js\extention\flatpickr.js" />
+    <None Include="wwwroot\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\vendor\bootstrap\css\bootstrap.css.map" />
+    <None Include="wwwroot\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\vendor\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\vendor\bootstrap\js\bootstrap.js.map" />
+    <None Include="wwwroot\vendor\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\vendor\jquery\jquery.js" />
+    <None Include="wwwroot\vendor\jquery\jquery.min.js" />
+    <None Include="wwwroot\vendor\jquery\jquery.min.map" />
+    <None Include="wwwroot\vendor\jquery\jquery.slim.js" />
+    <None Include="wwwroot\vendor\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\vendor\jquery\jquery.slim.min.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Devstercv.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Duplicate Technique";
+}
+
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+                    <h2 class="text-center">Dublett <b>Teknik/Verktyg</b></h2>
+                </div>
+                <div class="col-sm-4">
+                    <div class="search-box">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Teknik/Verktyg
+                </dt>
+            </dl>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <p class="text-danger text-uppercase"><b>@ViewBag.Name</b> finns redan i systemet</p>
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+                </div>
+            </div>
+
+            <form asp-action="Delete">
+                <a asp-action="Index" class="btn btn-primary btn-sm">Till lista</a>
+                <a asp-action="Create" class="btn btn-primary btn-sm">Lägg till</a>
+            </form>
+
+        </div>
+    </div>
+    </div>

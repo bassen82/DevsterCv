@@ -19,11 +19,43 @@
         }
     });
 
-    $("#c").change(function () {
-        if ($(this).val() !== '') {
-            $('#TheForm').submit();
+    $('i.edithidden').click(function () {
+        $(this).parent().next(".editinfo").addClass('show')
+        $(this).parent().addClass('dontdisplay')
+    })
+
+    $('i.editcontacthidden').click(function () {
+        $(this).parent().parent().next(".editinfo").addClass('show')
+        $(this).parent().parent().addClass('dontdisplay')
+    })
+
+    $('i.editassignmenthidden').click(function () {
+        $(this).parent().parent().parent().nextAll(".editinfo:first").toggle().addClass('show')
+        $(this).parent().parent().parent(".assignmentin:first").addClass('dontdisplay')
+    })
+
+    $('.editcreateassignment').click(function () {
+        $(this).parent().next(".editinfo").addClass('show')
+        $(this).parent().addClass('dontdisplay')
+    })
+
+    $('.checkboxfocus').change(function () {
+
+        if (this.checked) {
+            $(this).closest(".bananer").removeClass("filter");
+
+        }
+        else {
+            $(this).closest(".bananer").addClass("filter");
         }
     });
+
+    $("#Employeelist").change(function () {
+            if ($(this).val() !== '') {
+                $('#TheForm').submit();
+            }         
+    });
+
 });
 
 

@@ -1,5 +1,8 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+main {
+    width: 100%;
+}
 
 a.navbar-brand {
   white-space: normal;
@@ -60,7 +63,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  /*margin-bottom: 60px;*/
 }
 .footer {
   position: absolute;
@@ -107,6 +110,15 @@ body {
         padding-right: 10px;
     }
 
+        .infopanel p a {
+            display: flex;
+            justify-content: center;
+            padding-left: 10px;
+            padding-right: 10px;
+            color: #566787;
+            word-break: break-word;
+        }
+
     .infopanel h6 {
         background-color: black;
         color: white;
@@ -118,6 +130,15 @@ body {
         font-family:Arial;
         font-weight: normal;
     }
+
+        .infopanel h6.educationfont {
+            font-family: 'Palatino Linotype';
+            font-size: larger;
+            font-weight: bold;
+            color: rgb(128, 100, 49);
+            background-color: transparent;
+            text-align: center;
+        }
 
 .header {
     display: flex;
@@ -171,21 +192,27 @@ body {
     text-align:right;
 }
 
+.infoassignment {
+    display: flex;
+    flex-direction: row;
+    margin-bottom:10px;
+}
+
 .leftside {
-    width: 37%;
-    font-weight: bold;
+    justify-content: left;
+    width: 48%;
 }
 
-    .leftside img {
-        margin-left: -20px;
-        justify-content: left;
-    }
-
-.rightside {
-    width: 63%;
+.rightside img{
+    margin-top: -8px;
 }
 
-    .rightside hr {
+.center {
+    justify-content: left;
+    width: 52%;
+}
+
+    .center hr {
         border-top: 1px solid black;
     }
 
@@ -230,7 +257,7 @@ body {
     .profiledownrightside hr {
         border-top: 1px solid black;
         float: right;
-        width: 90%;
+        width: 80%;
       
     }
 
@@ -295,7 +322,7 @@ h1{
 .indexheader {
     display: flex;
     flex-direction: row;
-    height: 70px;
+    height: 30px;
 }
 
 .indexrightside h6{
@@ -341,6 +368,68 @@ h1{
     opacity: 0.3;
 }
 
+.bananer.filter .role {
+    background: linear-gradient();
+    opacity: 0.3;
+}
+
+.centertext{
+    text-align:center;
+}
+
+
+.editinfo {
+    display: none;
+}
+
+    .editinfo.show {
+        display: block;
+    }
+
+.dontdisplay {
+    display: none;
+}
+
+.entitylist {
+    width: 100%;
+}
+
+.deleteicon {
+    color: #E34724;
+}
+
+.deleteicon:hover {
+    color: #E34724;
+}
+
+.edit {
+    color: #FFC107;
+}
+
+.bind {
+    float:right;
+    padding-right:20px;
+}
+
+.tabletrbind {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.adminbutton {
+    color: #fff;
+}
+
+.filtering {
+    position: relative;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
 
 
 @media print {
@@ -355,5 +444,11 @@ h1{
         display: none;
     }
 
+    .body {
+        background: #fff;
+    }
 }
+
+
+
 

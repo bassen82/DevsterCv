@@ -1,0 +1,74 @@
+﻿@model DevsterCv.Models.Employee
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="col-md-10 mx-auto py-4">
+        <div class="card">
+            <div class="card-header bg-primary text-uppercase text-white">
+                <h4>Detaljer Anställd</h4>
+            </div>
+            <div class="card-body">
+                <div>
+                    <h4><img src="~/images/@Model.ProfilePicture" class="rounded-circle" height="100" width="100" asp-append-version="true" /> @Html.DisplayFor(model => model.EmployeeName) </h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            Namn
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.EmployeeName)
+                        </dd>
+
+                        <dt class="col-sm-2">
+                            Stad
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.City)
+                        </dd>
+                        <dt class="col-sm-2">
+                            Presentation
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.EmployeeInfo)
+                        </dd>
+                        <dt class="col-sm-2">
+                            Roll
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.EmployeRole)
+                        </dd>
+                        <dt class="col-sm-2">
+                            Intressen
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Interest)
+                        </dd>
+                        <dt class="col-sm-2">
+                            Mail
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Mail)
+                        </dd>
+                        <dt class="col-sm-2">
+                            Telefon
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Tele)
+                        </dd>
+                        <dt class="col-sm-2">
+                            Linkedin
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Linkedin)
+                        </dd>
+                    </dl>
+                </div>
+                </div>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.EmployeeId">Edit</a> |
+                    <a asp-action="Index">Tillbaka till lista</a>
+                </div>
+            </div>
+        </div>

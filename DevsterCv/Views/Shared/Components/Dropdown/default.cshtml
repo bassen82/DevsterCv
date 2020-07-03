@@ -1,7 +1,18 @@
-﻿@using (Html.BeginForm("Cv", "Home", FormMethod.Post, new { id = "TheForm" }))
-{
-    @Html.DropDownList("c", (SelectList)ViewBag.c, "---VÄLJ ANSTÄLLD---")
-}
+﻿@model List<DevsterCv.Models.ViewModels.EmployeeViewModel>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Cv
+        </a>
+     
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+            @foreach (var employee in Model)
+            {
+                @(Html.ActionLink(@employee.EmployeeName, "Cv", "Home", new { id = @employee.EmployeeId }, new { @class = "dropdown-item" }));
+
+            }
+        </div>
+        </li>
 
 
 

@@ -1,74 +1,135 @@
 ﻿@model DevsterCv.Models.CvViewModel
+
+@{
+    ViewData["Title"] = "CV";
+}
+
+<!-- Custom styles for this template -->
+<link href="~/css/site.css" rel="stylesheet">
+<link href="~/css/list.css" rel="stylesheet">
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
 <div class="header">
-    <div class="headerleft"><img src="data:image;base64,@System.Convert.ToBase64String(Model.Employee.Result.Photo)" title="profilepic" alt="profile" height="120" weight="120" /> </div>
-    <div class="headerright"> <h1>@Html.ViewData.Model.Employee.Result.EmployeeName</h1></div>
+    <div class="headerleft">
+        <img src="~/images/@Model.Employee.ProfilePicture" height="150" width="150" />
+    </div>
+    <div class="headerright"> <h1>@Html.ViewData.Model.Employee.EmployeeName</h1></div>
 
 </div>
 <div class="content">
     <div class="leftinfo">
         <div class="infopanel">
-            <h6>KONTAKT</h6>
-            <p><img src="~/images/tele.png" title="telephone" alt="telephone"></p>
-            <p>@Html.ViewData.Model.Contact.Result.Tele</p>
-            <p><img src="~/images/home.png" title="home" alt="home"></p>
-            <p>@Html.ViewData.Model.Contact.Result.City</p>
-            <p><img src="~/images/mail.png" title="mail" alt="mail"></p>
-            <p>@Html.ViewData.Model.Contact.Result.Mail</p>
-            <p><img src="~/images/linkedin.png" title="linkedin" alt="linkedin"></p>
-            <p>@Html.ViewData.Model.Contact.Result.Linkedin</p>
+            <div class="contact">
+                <h6>KONTAKT</h6>
+                <p><img src="~/images/tele.png" title="telephone" alt="telephone"></p>
+                <p>@Html.ViewData.Model.Employee.Tele</p>
+                <p><img src="~/images/home.png" title="home" alt="home"></p>
+                <p>@Html.ViewData.Model.Employee.City</p>
+                <p><img src="~/images/mail.png" title="mail" alt="mail"></p>
+                <p>@Html.ViewData.Model.Employee.Mail</p>
+                <p><img src="~/images/linkedin.png" title="linkedin" alt="linkedin"></p>
+                <p><a href="@Html.ViewData.Model.Employee.Linkedin">@Html.ViewData.Model.Employee.Linkedin</a></p>
+                <p class="d-print-none"><i class="editcontacthidden filtering d-print-none material-icons edit" title="Ändra" data-toggle="tooltip">&#xE254;</i></p>
+            </div>
 
+            <div class="editinfo">
+                <form action="/Employees/UpdateContact" method="post">
+                    <input type="hidden" id="employeeid" name="employeeid" value="@Html.ViewData.Model.Employee.EmployeeId">
+                    <h6>KONTAKT</h6>
+                    <p><img src="~/images/tele.png" title="telephone" alt="telephone"></p>
+                    <p><input type="text" id="tele" name="tele" value="@Html.ViewData.Model.Employee.Tele"></p>
+                    <p><img src="~/images/home.png" title="home" alt="home"></p>
+                    <p><input type="text" id="city" name="city" value="@Html.ViewData.Model.Employee.City"></p>
+                    <p><img src="~/images/mail.png" title="mail" alt="mail"></p>
+                    <p><input type="text" id="mail" name="mail" value="@Html.ViewData.Model.Employee.Mail"></p>
+                    <p><img src="~/images/linkedin.png" title="linkedin" alt="linkedin"></p>
+                    <p><input type="text" id="linkedin" name="linkedin" value="@Html.ViewData.Model.Employee.Linkedin"></p>
+                    <p><input type="submit" value="Spara" />            </p>
+                </form>
+            </div>
         </div>
         <div class="infopanel">
             <h6>EXPERTIS</h6>
-            <ul style="list-style-type:none;">
-                @foreach (var expertis in Model.Spec.Result.Expertis)
+            <ul style="list-style-type:none;word-wrap: break-word;padding-right: 20px;">
+                @foreach (var expertis in Model.Expertises)
                 {
-                    <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @expertis</span></li>
+                    <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @expertis.Name</span></li>
                 }
+                <a href="@Url.Action("Admin", "EmployeeExpertises", new {employeeid = @Html.ViewData.Model.Employee.EmployeeId,   }) "<i class="material-icons filtering d-print-none edit bind" title="Lägg till" data-toggle="tooltip">add_circle_outline</i></a>
             </ul>
         </div>
 
         <div class="infopanel">
             <h6>TEKNIKER & VERKTYG</h6>
-            <ul style="list-style-type:none;">
-                @foreach (var teknik in Model.Spec.Result.teknik)
+            <ul style="list-style-type:none;word-wrap: break-word;padding-right: 20px;" ">
+                @foreach (var teknik in Model.Techniques)
                 {
-                <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @teknik</span></li>
+                    <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @teknik.Name</span></li>
                 }
+                <a href="@Url.Action("Admin", "EmployeeTechniques", new {employeeid = @Html.ViewData.Model.Employee.EmployeeId,   }) "<i class="material-icons filtering d-print-none edit bind" title="Lägg till" data-toggle="tooltip">add_circle_outline</i></a>
             </ul>
         </div>
         <div class="infopanel">
             <h6>MIDDLEWARE/DATABASER</h6>
-            <ul style="list-style-type:none;">
-                @foreach (var middleware in Model.Spec.Result.Middleware)
+            <ul style="list-style-type:none;word-wrap: break-word;padding-right: 20px;" ">
+                @foreach (var middleware in Model.Middlewares)
                 {
-                    <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @middleware</span></li>
+                    <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @middleware.Name</span></li>
                 }
+                <a href="@Url.Action("Admin", "EmployeeMiddlewares", new {employeeid = @Html.ViewData.Model.Employee.EmployeeId,   }) "<i class="material-icons filtering d-print-none edit bind" title="Lägg till" data-toggle="tooltip">add_circle_outline</i></a>
             </ul>
         </div>
         <div class="infopanel">
             <h6>BRANSCHER</h6>
-            <ul style="list-style-type:none;">
-                @foreach (var bransch in Model.Spec.Result.Branscher)
+            <ul style="list-style-type:none;word-wrap: break-word;padding-right: 20px;">
+                @foreach (var bransch in Model.Trades)
                 {
-                    <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @bransch</span></li>
+                    <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @bransch.Name</span></li>
                 }
+                <a href="@Url.Action("Admin", "EmployeeTrades", new {employeeid = @Html.ViewData.Model.Employee.EmployeeId,   }) "<i class="material-icons filtering d-print-none edit bind" title="Lägg till" data-toggle="tooltip">add_circle_outline</i></a>
+
             </ul>
 
         </div>        <div class="infopanel">
-    <h6>UTBILDNING</h6>
-    <ul>
-        @foreach (var utbildning in Model.Spec.Result.Utbildning)
-        {
-            <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @utbildning</span></li>
-        }
-
-    </ul>
-    </div>
+            <h6>UTBILDNING</h6>
+            <h6 class="educationfont">Examen</h6>
+            <ul style="list-style-type:none;word-wrap: break-word;padding-right: 20px;">
+                <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @Html.ViewData.Model.DegreeTraining.Name</span>  <i class="edithidden filtering d-print-none material-icons edit bind" title="Ändra" data-toggle="tooltip">&#xE254;</i></li>
+                <li class="editinfo">
+                    <form action="/Trainings/UpdateDegree" method="post">
+                        <input type="hidden" id="trainingid" name="trainingid" value="@Html.ViewData.Model.DegreeTraining.TrainingId">
+                        <input type="hidden" id="employeeid" name="employeeid" value="@Html.ViewData.Model.Employee.EmployeeId">
+                        <textarea id="" name="utbildning" rows="6" cols="15">@Html.ViewData.Model.DegreeTraining.Name</textarea>
+                        <input type="submit" value="Spara" />
+                    </form>
+                </li>
+                <a href="@Url.Action("Admin", "EmployeeTrainings", new {employeeid = @Html.ViewData.Model.Employee.EmployeeId,   }) "<i class="material-icons filtering d-print-none edit bind" title="Lägg till" data-toggle="tooltip">add_circle_outline</i></a>
+            </ul>
+            <h6 class="educationfont">Kurser</h6>
+            <ul style="list-style-type:none;word-wrap: break-word;padding-right: 20px;">
+                @foreach (var kurser in Model.Trainings)
+                {
+                    <li class="filtercheckteknik"><input class="checkboxteknik" checked type="checkbox"><span> @kurser.Name</span></li>
+                }
+                <a href="@Url.Action("AdminCourse", "EmployeeTrainings", new {employeeid = @Html.ViewData.Model.Employee.EmployeeId,   }) "<i class="material-icons filtering d-print-none edit bind" title="Lägg till" data-toggle="tooltip">add_circle_outline</i></a>
+            </ul>
+        </div>
         <div class="infopanel">
             <h6>INTRESSEN</h6>
-            <ul style="list-style-type:none;">
-                <li>@Html.ViewData.Model.Spec.Result.Intressen</li>
+            <ul style="list-style-type:none;word-wrap: break-word;padding-right: 20px;">
+                <li>@Html.ViewData.Model.Employee.Interest <i class="edithidden d-print-none filtering material-icons edit" title="Ändra" data-toggle="tooltip">&#xE254;</i></li>
+                <li class="editinfo">
+                    <form action="/Employees/UpdateEmployeeintrest" method="post">
+                        <input type="hidden" id="employeeid" name="employeeid" value="@Html.ViewData.Model.Employee.EmployeeId">
+                        <textarea id="intressen" name="intressen" rows="6" cols="15">@Html.ViewData.Model.Employee.Interest</textarea>
+                        <input type="submit" value="Spara" />
+                    </form>
+                </li>
             </ul>
         </div>
 
@@ -85,9 +146,22 @@
             </div>
             <div class="bananer">
                 <div class="vline"></div>
-                <div class="info"><ul style="list-style-type:none;"><li>@Html.ViewData.Model.Employee.Result.EmployeeInfo</li></ul></div>
+                <div class="info">
+                    <ul style="list-style-type:none;">
+                        <li>@Html.ViewData.Model.Employee.EmployeeInfo  <i class="edithidden filtering d-print-none material-icons edit"  title="Ändra" data-toggle="tooltip">&#xE254;</i></li>
+                        <li class="editinfo">
+                            <form action="/Employees/UpdateEmployeeinfo" method="post">
+                                <input type="hidden" id="employeeId" name="employeeid" value="@Html.ViewData.Model.Employee.EmployeeId">
+                                <textarea id="" name="employeeInfo" rows="6" cols="100">@Html.ViewData.Model.Employee.EmployeeInfo</textarea>
+                                <input type="submit" value="Spara" />
+                            </form>
+                        </li>
+                    </ul>
+
+                </div>
             </div>
         </div>
+
         <div class="bananer">
             <div class="profiledownleftside"><hr></div>
         </div>
@@ -97,19 +171,40 @@
         </div>
         <div class="cvinfo">
             <h2>ROLLER</h2>
-            <p>@Html.ViewData.Model.Employee.Result.EmployeRole</p>
+            <p>@Html.ViewData.Model.Employee.EmployeRole  <i class="edithidden d-print-none material-icons filtering edit" title="Ändra" data-toggle="tooltip">&#xE254;</i></p>
+            <div class="editinfo">
+                <form action="/Employees/UpdateEmployeerole" method="post">
+                    <input type="hidden" id="employeeId" name="employeeid" value="@Html.ViewData.Model.Employee.EmployeeId">
+                    <textarea id="employeerole" name="employeerole" rows="6" cols="100">@Html.ViewData.Model.Employee.EmployeRole</textarea>
+                    <input type="submit" value="Spara" />
+                </form>
+            </div>
         </div>
 
         <div class="cvinfo">
-            <h2>UPPDRAG I FOKUS</h2>
-            @foreach (var focusassignment in Model.FocusAssigments.Result)
+            <div class="bananer">
+                <div class="role"><h2>UPPDRAG I FOKUS</h2></div>
+                <div class="custom-control custom-checkbox filterout d-print-none">
+                    <input type="checkbox" class="custom-control-input checkboxfocus filtering" checked id="defaultUnchecked" >
+                    <label class="custom-control-label filtering" data-toggle="tooltip" data-original-title="Filtrera" for="defaultUnchecked"></label>
+                </div>
+            </div>
+
+            @foreach (var focusassignment in Model.FocusAssigments)
             {
                 <div class="assignmentin">
                     <div class="bananer">
                         <div class="role"><h6>@focusassignment.Uppdrag</h6></div>
-                        <div class="filterout d-print-none"><input class="checkbox" checked type="checkbox"></div>
+                            <div class="custom-control custom-checkbox filterout d-print-none">
+                            <input type="checkbox" class="custom-control-input filtering checkbox" checked id="@focusassignment.Uppdrag">
+                            <label class="custom-control-label filtering" data-toggle="tooltip" data-original-title="Filtrera" for="@focusassignment.Uppdrag"></label>
+                        </div>
+                        <a class="d-print-none filtering" data-toggle="tooltip" data-original-title="Ändra"><i class="editassignmenthidden material-icons edit">&#xE254;</i></a>
+                        <input type="hidden" id="employeeid" name="employeeid" value="@Html.ViewData.Model.Employee.EmployeeId">
+                        <a asp-controller="Assigments" asp-action="DeleteByEmployee" asp-route-id="@focusassignment.Id" class="delete d-print-none deleteicon" title="Ta bort" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+
                     </div>
-                    
+
                     <div class="bananer">
                         <div class="role">@focusassignment.Roll</div>
                         <div class="timeslot">@focusassignment.Tid</div>
@@ -118,41 +213,120 @@
                     <p>@focusassignment.Beskrivning</p>
                     <p class="font-italic">@focusassignment.Teknik</p>
                 </div>
+
+                <div class="editinfo">
+                    <form action="/Assigments/UpdateByEmployee" method="post">
+                        <input type="hidden" id="employeeid" name="employeeid" value="@Html.ViewData.Model.Employee.EmployeeId">
+                        <input type="hidden" id="id" name="id" value="@focusassignment.Id">
+                        <div class="assignmentin">
+                            <div class="bananer">
+                                <div class="role"><h6><input type="text" id="uppdrag" name="uppdrag" value="@focusassignment.Uppdrag"></h6></div>
+                            </div>
+                            <div class="bananer">
+                                <div class="role"><input type="text" id="roll" name="roll" value="@focusassignment.Roll"></div>
+                                <div class="timeslot"><input type="text" id="tid" name="tid" value="@focusassignment.Tid"></div>
+                            </div>
+
+                            <p><textarea id="beskrivning" name="beskrivning" rows="6" cols="100">@focusassignment.Beskrivning</textarea></p>
+                            <p class="font-italic"><input type="text" id="teknik" name="teknik" width="500" value="@focusassignment.Teknik"></p>
+                            <p>Fokus uppdrag <input id="focus" name="focus" value="Fokus uppdrag?" checked type="checkbox">@focusassignment.Focus<p>
+                            <p><input type="submit" value="Spara" /></p>
+                        </div>
+                    </form>
+                </div>
             }
+
+
         </div>
 
-            <div class="cvinfo">
-                <div>
-                    <div class="assignment">
+        <div class="cvinfo">
+            <div>
+                <div class="assignment">
 
-                        <div class="bananer">
-                            <div class="leftside"><h2>ERFARENHETER</h2></div>
-                            <div class="rightside"><hr></div>
-                        </div>
-                        <div class="leftside"><img src="~/images/portfolio.svg" height="50" width="50" /></div>
-
-                        @foreach (var assignment in Model.Assigments.Result)
-                        {
-                    <div class="assignmentin">
-                        <div class="bananer">
-                            <div class="role"><h6>@assignment.Uppdrag</h6></div>
-                            <div class="filterout d-print-none"><input class="checkbox" checked type="checkbox" id="vehicle3" name="vehicle3" value="Boat"></div>
-                        </div>
-                        <div class="bananer">
-                            <div class="role">@assignment.Roll</div>
-                            <div class="timeslot">@assignment.Tid</div>
-                        </div>
-
-                        <p>@assignment.Beskrivning</p>
-                        <p class="font-italic">@assignment.Teknik</p>
+                    <div class="infoassignment">
+                        <div class="leftside"><h2>ERFARENHETER</h2></div>
+                        <div class="center"><hr></div>
+                        <div class="rightside"><img src="~/images/portfolio.svg" height="50" width="50" /></div>
                     </div>
-                        }
 
+                    <div class="bananer d-print-none">
+                        <div class="btn btn-primary btn-sm editcreateassignment">Lägg till Uppdrag</div>
                     </div>
+
+
+                    <div class="editinfo">
+                        <form action="/Assigments/CreateByEmployee" method="post">
+                            <input type="hidden" id="employeeid" name="employeeid" value="@Html.ViewData.Model.Employee.EmployeeId">
+                            <input type="hidden" id="id" name="id" value="">
+                            <div class="assignmentin">
+                                <div class="bananer">
+                                    <label for="uppdrag">Uppdrag</label>
+                                    <div class="role"><h6><input type="text" id="uppdrag" name="uppdrag" value=""></h6></div>
+                                </div>
+                                <div class="bananer">
+                                    <label for="roll">Roll</label>
+                                    <div class="role"><input type="text" id="roll" name="roll" value=""></div>
+                                    <label for="tid">Tid</label>
+                                    <div class="timeslot"><input type="text" id="tid" name="tid" value=""></div>
+                                </div>
+
+                                <p><label for="beskrivning">Beskrivning</label><textarea id="beskrivning" name="beskrivning" rows="6" cols="100" value=""></textarea></p>
+                                <label for="teknik">Teknik</label>
+                                <p class="font-italic"><input type="text" id="teknik" name="teknik" width="500" value=""></p>
+                                <p>Fokus uppdrag <input type="checkbox" id="focus" name="focus"><p>
+                                <p><input type="submit" value="Spara" /></p>
+                            </div>
+                        </form>
+                    </div>
+
+                    @foreach (var assignment in Model.Assigments)
+                    {
+                        <div class="assignmentin">
+                            <div class="bananer">
+                                <div class="role"><h6>@assignment.Uppdrag</h6></div>
+                                <div class="custom-control custom-checkbox filterout filtering d-print-none">
+                                    <input type="checkbox" class="custom-control-input filtering checkbox" checked id="@assignment.Uppdrag">
+                                    <label class="custom-control-label filtering" data-toggle="tooltip" data-original-title="Filtrera" for="@assignment.Uppdrag"></label>
+                                </div>
+                                <a class="d-print-none filtering" data-toggle="tooltip" data-original-title="Ändra"><i class="editassignmenthidden material-icons edit">&#xE254;</i></a>
+                                <a asp-controller="Assigments" asp-action="DeleteByEmployee" asp-route-id="@assignment.Id" class="delete d-print-none deleteicon" title="Ta bort" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+
+                            </div>
+                            <div class="bananer">
+                                <div class="role">@assignment.Roll</div>
+                                <div class="timeslot">@assignment.Tid</div>
+                            </div>
+                            <p>@assignment.Beskrivning</p>
+                            <p class="font-italic">@assignment.Teknik </p>
+                        </div>
+
+                        <div class="editinfo">
+                            <form action="/Assigments/UpdateByEmployee" method="post">
+                                <input type="hidden" id="employeeid" name="employeeid" value="@Html.ViewData.Model.Employee.EmployeeId">
+                                <input type="hidden" id="id" name="id" value="@assignment.Id">
+                                <div class="assignmentin">
+                                    <div class="bananer">
+                                        <div class="role"><h6><input type="text" id="uppdrag" name="uppdrag" value="@assignment.Uppdrag"></h6></div>
+                                    </div>
+                                    <div class="bananer">
+                                        <div class="role"><input type="text" id="roll" name="roll" value="@assignment.Roll"></div>
+                                        <div class="timeslot"><input type="text" id="tid" name="tid" value="@assignment.Tid"></div>
+                                    </div>
+
+                                    <p><textarea id="beskrivning" name="beskrivning" rows="6" cols="100">@assignment.Beskrivning</textarea></p>
+                                    <p class="font-italic"><input type="text" id="teknik" name="teknik" width="500" value="@assignment.Teknik"></p>
+                                    <p>Fokus uppdrag <input type="checkbox" id="focus" name="focus"><p>
+                                    <p><input type="submit" value="Spara" /></p>
+                                </div>
+                            </form>
+                        </div>
+                    }
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 

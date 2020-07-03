@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Dropbox.Api;
+using DevsterCv.Service;
 
 namespace DevsterCv.Controllers
 {
@@ -27,26 +29,42 @@ namespace DevsterCv.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Cv(String c)
-        {
 
+        public ViewResult Cv(int id)
+        {
             CvViewModel CompleteCv = new CvViewModel();
             Assigment assigment = new Assigment();
-            FocusAssignment focusassigment = new FocusAssignment();
-            Contact contact = new Contact();
+            Assigment focusassingment = new Assigment();
             Employee employee = new Employee();
-            Spec spec = new Spec();
 
-            CompleteCv.Assigments = assigment.GetAllAssignmentsAsync(c, "Uppdrag");
-            CompleteCv.Contact = contact.GetContactAsync(c, "Kontakt");
-            CompleteCv.Employee = employee.GetEmployeeAsync(c, "Profile");
-            CompleteCv.FocusAssigments = focusassigment.GetAllAssignmentsAsync(c, "Uppdragifokus");
-            CompleteCv.Spec = spec.GetSpecAsync(c, "Spec");
-           
+            Expertise expertise = new Expertise();
+            Middleware middelware = new Middleware();
+            Training training = new Training();
+            Trade trade = new Trade();
+            Technique tech = new Technique();
+
+            var emp = EmployeeService.Get(id);
+
+            CompleteCv.Employee = employee.GetEmployeeView(emp);
+            CompleteCv.Expertises = expertise.GetExpertiseView(id);
+            CompleteCv.Middlewares = middelware.GetMiddlewareView(id);
+            CompleteCv.Techniques = tech.GetTechniqueView(id);
+            CompleteCv.Trades = trade.GetTradeView(id);
+            CompleteCv.DegreeTraining = training.GetDegreeTrainingView(id);
+            CompleteCv.Trainings = training.GetTrainingView(id);
+            CompleteCv.Assigments = assigment.GetAllNonFocusAssignments(id);
+            CompleteCv.FocusAssigments = focusassingment.GetAllFocusAssignments(id);
 
             return View(CompleteCv);
         }
+
+
+        public IActionResult About()
+        {
+            
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

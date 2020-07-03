@@ -13,8 +13,7 @@ namespace DevsterCv
 {
     public class DropBoxRepository
     {
-        static string token = "IaVslLrvb6AAAAAAAAAAR_jgVanoPl8xJwzvOjV416kKil88z5fmvFPltXyd8z74";
-
+        static string token = "IaVslLrvb6AAAAAAAAAAS54uAvcjvKxaezWQyVdGoZ8vbA82Gl2fCNlckFf8-WLb";
 
         public async Task<string> GetEmployeeDir()
         {
@@ -65,8 +64,7 @@ namespace DevsterCv
                     var s = response.GetContentAsByteArrayAsync();
                     s.Wait();
                     photo = s.Result;
-                }
-              
+                } 
             }
             return photo;
         }

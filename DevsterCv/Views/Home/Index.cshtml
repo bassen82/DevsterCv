@@ -1,37 +1,73 @@
-﻿<div class="indexheader">
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
 
+<!-- Page Content -->
+<div class="container">
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+        <div class="col-lg-7">
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="~/images/working.jpg" alt="">
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">SustainIt<b>CV</b></h1>
+            <p>Med SustainIt<b>CV</b> skapar du snabbt och enkelt kompletta CV:n. SustainIt<b>CV</b> skapar färdiga PDF-filer som kan e-postas, skrivas ut eller sparas.</p> 
+
+            
 </div>
-<div class="content">
-    <div class="rightinfo">
-        <div class="cvinfo">
-            <div class="bananer">
-                <div class="indexleftside">
-                    <img src="~/images/ladda ned.jpg" />
+        <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+    <!-- Call to Action Well -->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card-body">
+            <p class="text-white m-0">SustainIt<b>CV</b> används för att administrera våra duktiga konsulters cv:en.</p>
+        </div>
+    </div>
 
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Anställda</h2>
+                    <p>Lista anställda, Lägg till nya anställda, ta bort anställda samt visa detaljvy över anställd.</p>
                 </div>
-                <div class="indexrightside">
-                    <h6>DesvterCv visualiserar anställdas cv:n</h6>
-                    <ul>
-                        <li>För att se en anställds cv välj personen i rullistan i headern</li>
-                        <li>För att skriva ut ett cv. Högerklicka och välj skriv ut eller ctrl + p</li>
-                    </ul>
-                    <h6>Hur det funkar</h6>
-                    <ul>
-                        <li> DevsterCV appen listar all cv data som finns i filstrukturen för varje anställd. Filstrukturen är C:\CvAppen\Devster\{Anställd}. Rulllistan populeras utifrån sökvägen C:\CvAppen\Devster\{Anställd}. Det betyder att om någon ny börjar eller slutar så behöver den personen läggas till alternativt tas bort från filstrukturen, detta reflekteras då också i DevsterCv. </li>
-                        <li>Under varje anställds mapp finns sen hela cv:et uppdelat i olika mappar som var och en innehåller en json fil (data.json) för varje del av cv:et. Det är viktigt att alla filer heter data.json.</li>
-                        <li>Dom undermappar som finns för varje anställd är Bild, Kontakt, Profile, Spec, Uppdrag samt Uppdrag i fokus.</li>
-                        <li>Uppdrag i fokus lägger man de uppdrag som är av störst vikt för det kundcase som man ska skicka cv:et till. Det går att lägga en eller flera uppdrag som fokus uppdrag.</li>
-                        <li>För att ändra en anställds cv så måste man editera json filerna. Antingen lägga till eller ta bort delar ur berörd data.json fil </li>
-                        <li>DevsterCv app visar endast upp innehållet som finns i json filerna som heter data.json i filstrukturen.</li>
-                        <li>data.json filern måste bestå av endast valid json data. Online finns en flera olika json validatorer som kan användas för att validera. Den här kan t ex användas <a href="https://jsonformatter.curiousconcept.com/">jsonformatter.curiousconcept.com</a></li>
-                    </ul>
+                <div class="card-footer">
+                    <a href="@Url.Action("Index", "Employees")" class="btn btn-primary btn-sm">Se Anställda</a>
                 </div>
             </div>
-
+        </div>
+        <!-- /.col-md-4 -->
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Teknik & Verktyg</h2>
+                    <p class="card-text">Lista teknik, Lägg till nya teknik, ta bort teknik samt visa detaljvy över en teknik eller ett verktyg.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="@Url.Action("Index", "Techniques")" class="btn btn-primary btn-sm">Lista</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-md-4 -->
+        <!-- /.col-md-4 -->
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">Kompetens matchning</h2>
+                    <p class="card-text">Matcha anställda mot kompetensförfrågningar från kund.</p>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary btn-sm" href="@Url.Action("Index", "Search")">Kompetensmatchning</a>
+                </div>
+            </div>
         </div>
 
     </div>
+    <!-- /.row -->
+
 </div>
-
-
-
+<!-- /.container -->
+<!-- Footer -->

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<DevsterCv.Models.ViewModels.SearchViewModel>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link href="~/css/list.css" rel="stylesheet">
+<link href="~/css/searchbar.css" rel="stylesheet">
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+@{
+    ViewBag.Title = "Search";
+}
+
+
+<div class="container">
+    <div class="container">
+        <div class="table-wrapper">
+            <form action="/Search/Index" method="post">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-7"><h2>Matcha <b>Anställd</b></h2></div>
+                        <div class="col-sm-4">
+                            <div class="search-box">
+                                <i class="material-icons">&#xE8B6;</i>
+                                <input type="text" id="search" name="search" class="form-control" placeholder="Sök på kompetens">
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <input type="submit" value="Sök" class="btn btn-primary btn-sm" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <p></p>
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Entity)</th>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.EmployeeName)</th>
+                    </tr>
+                </thead>
+                @if (Model != null)
+                {
+
+
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Entity</td>
+                                <td>@item.Name</td>
+                                <td> @(Html.ActionLink(item.EmployeeName, "Cv", "Home", new { id = item.EmployeeId }))</td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                }
+            </table>
+               
+            </div>
+        
+        </div>
+
+
+
+
+
+
+
+

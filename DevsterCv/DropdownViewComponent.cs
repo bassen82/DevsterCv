@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevsterCv.Models;
+using DevsterCv.Models.ViewModels;
+using DevsterCv.Service;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -11,30 +14,21 @@ namespace DevsterCv
     [ViewComponent(Name = "Dropdown")]
     public class DropdownViewComponent : ViewComponent
     {
-
-
-
-
-        public async Task<IViewComponentResult> InvokeAsync(
-        int maxPriority, bool isDone)
+        public IViewComponentResult Invoke()
         {
-          //  string[] dirs = Directory.GetDirectories(@"C:\CvAppen\Devster");
-           List<string> employees = new List<string>();
+            var model = EmployeeService.GetAll();
+            List<EmployeeViewModel> items = new List<EmployeeViewModel>();
 
-            DropBoxRepository dr = new DropBoxRepository();
-            string data = await dr.GetEmployeeDir();
-            string[] dirs = data.Split(',');
-            foreach (string dir in dirs)
-            {
-                String name = dir;
-                employees.Add(name);
-            }
-            employees.Sort();
-            var query = employees.Select(c => new { c });
-            ViewBag.c = new SelectList(query.AsEnumerable(), "c", "c", 3);
+            foreach (Employee employee in model)
+                         {
+                             EmployeeViewModel item = new EmployeeViewModel();
+                             item.EmployeeId = employee.EmployeeId;
+                             item.EmployeeName = employee.EmployeeName;
+                             items.Add(item);
+                         }
 
-            return View();
+
+                return View(items);
         }
-
-    }
+}
 }
