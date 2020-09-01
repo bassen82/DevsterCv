@@ -140,25 +140,25 @@ table.table.employee-list tr td {
 }
 
 .bg-dark {
-    background-color: #135055 !important;
+    background-color: #7e32f2 !important;
 }
 
 .bg-secondary {
-    background-color: #87BBA2 !important;
+    background-color: #e0efff !important;
 }
 
 
 .btn-primary {
     color: #fff;
-    background-color: #62677C !important;
-    border-color: #62677C !important;
+    background-color: #7e32f2 !important;
+    border-color: #7e32f2 !important;
 }
 
-.btn-primary:hover {
-    color: #fff;
-    background-color: #87BBA2 !important;
-    border-color: #87BBA2 !important;
-}
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #00ff7f !important;
+        border-color: #00ff7f !important;
+    }
 
 
 
